@@ -1,7 +1,7 @@
 "use client"
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { Alert, AlertDescription } from '@/ui/alert'
+import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
+import { Input } from '@/ui/input'
 import { useUser } from '@clerk/nextjs'
 import { Todo } from '@prisma/client'
 import { AlertTriangle } from 'lucide-react'
@@ -100,7 +100,7 @@ export default function Dashboard() {
                     <CardTitle>Add New Todo</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <TodoForm onSubmit={(title) => handleAddTodo(title)} />
+                    <TodoForm onSubmit={(title: string) => handleAddTodo(title)} />
                 </CardContent>
             </Card>
             {!isSubscribed && todos.length >= 3 && (
@@ -150,7 +150,7 @@ export default function Dashboard() {
                             <Pagination
                                 currentPage={currentPage}
                                 totalPages={totalPages}
-                                onPageChange={(page) => fetchTodos(page)}
+                                onPageChange={(page: number) => fetchTodos(page)}
                             />
                         </>
                     )}

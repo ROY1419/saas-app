@@ -142,7 +142,7 @@ export default function Dashboard() {
                                     <TodoItem
                                         key={todo.id}
                                         todo={todo}
-                                        onUpdate={handleUpdateTodo}
+                                        onUpdate={handleUpdatetodo}
                                         onDelete={handleDeleteTodo}
                                     />
                                 ))}

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 const publicRoutes = ["/", "/api/webhook/register", "/sign-up", "/sign-in"];
 
-export default withClerkMiddleware(async (req) => {
+export default withClerkMiddleware(async (req:any) => {
   const { userId } = getAuth(req);
 
   // If the route is public, allow access
@@ -17,7 +17,7 @@ export default withClerkMiddleware(async (req) => {
   }
 
   try {
-    const user = await clerkClient.User.getUser(userId);
+    const user = await clerkClient.Users.getUser(userId);
     const role = user.publicMetadata.role as string | undefined;
 
     if (role === "admin") {

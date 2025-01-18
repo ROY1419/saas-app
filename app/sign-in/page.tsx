@@ -10,9 +10,9 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
-import { Label } from '@/components/ui/label'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+} from "@/ui/card"
+import { Label } from '@/ui/label'
+import { Alert, AlertDescription } from '@/ui/alert'
 import { Eye, EyeOff } from 'lucide-react'
 import { useSignIn } from '@clerk/nextjs';
 

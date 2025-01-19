@@ -1,7 +1,10 @@
 "use client"
-import { Alert, AlertDescription } from '@/ui/alert'
-import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
-import { Input } from '@/ui/input'
+import { Pagination } from '@/components/Pagination'
+import { TodoForm } from '@/components/TodoForm'
+import { TodoItem } from '@/components/TodoItem'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import { useUser } from '@clerk/nextjs'
 import { Todo } from '@prisma/client'
 import { AlertTriangle } from 'lucide-react'
@@ -149,7 +152,7 @@ export default function Dashboard() {
                             </ul>
                             <Pagination
                                 currentPage={currentPage}
-                                totalPages={totalPages}
+                                totalPage={totalPages}
                                 onPageChange={(page: number) => fetchTodos(page)}
                             />
                         </>

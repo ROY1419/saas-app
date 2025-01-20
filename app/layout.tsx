@@ -1,29 +1,29 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Inter } from "next/font/google";
-import { Toaster } from "@/components/ui/toaster";
+"use client"
+import React, { Suspense } from 'react'
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Role Based Auth Clerk",
-  description: "role based auth app using prisma and clerk",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const LazyClerkProvider = React.lazy(() =>  import('@clerk/nextjs').then(module => module.ClerkProvider));
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          {children}
-          <Toaster />
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyClerkProvider>
+        <html lang="en">
+          <body>
+            <header>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </header>
+            <main>{children}</main>
+          </body>
+        </html>
+      </LazyClerkProvider>
+    </Suspense>
+  )
 }
+
+
